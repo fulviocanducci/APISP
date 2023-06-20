@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APISP", "APISP\APISP.csproj", "{34FF815D-31FA-4997-BF0B-1579895A98EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34FF815D-31FA-4997-BF0B-1579895A98EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34FF815D-31FA-4997-BF0B-1579895A98EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34FF815D-31FA-4997-BF0B-1579895A98EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34FF815D-31FA-4997-BF0B-1579895A98EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB6A5C62-5278-4396-A6FA-D523C67B3CBE}
+	EndGlobalSection
+EndGlobal
