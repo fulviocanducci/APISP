@@ -13,6 +13,7 @@ namespace APISP.Controllers
       {
          _dalPeople = dalPeople;
       }
+
       [HttpGet]
       public IAsyncEnumerable<People> Get()
       {
@@ -51,7 +52,7 @@ namespace APISP.Controllers
       [HttpPut("{id}")]
       public async Task<ActionResult<People>> Put(int id, [FromBody] People model)
       {
-         if (model is null || id == 0 || model.Id != 0)
+         if (model is null || id == 0 || model.Id != id || !ModelState.IsValid)
          {
             return BadRequest();
          }

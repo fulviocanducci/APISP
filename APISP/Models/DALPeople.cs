@@ -40,7 +40,7 @@ namespace APISP.Models
          command.CommandText = "PEOPLE_UPDATE";
          command.Parameters.Add("@Name", System.Data.SqlDbType.NVarChar, 50).Value = model.Name;
          command.Parameters.Add("@Active", System.Data.SqlDbType.Bit).Value = model.Active;
-         command.Parameters.Add("@Id", System.Data.SqlDbType.Bit).Value = model.Id;
+         command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = model.Id;
          status = await command.ExecuteNonQueryAsync() > 0;
          _connection.Close();
          return status;
@@ -53,7 +53,7 @@ namespace APISP.Models
          using SqlCommand command = _connection.CreateCommand();
          command.CommandType = System.Data.CommandType.StoredProcedure;
          command.CommandText = "PEOPLE_FIND";
-         command.Parameters.Add("@Id", System.Data.SqlDbType.Bit).Value = id;
+         command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = id;
          using (SqlDataReader reader = await command.ExecuteReaderAsync())
          {
             if (reader is not null && reader.HasRows)
@@ -102,7 +102,7 @@ namespace APISP.Models
          using SqlCommand command = _connection.CreateCommand();
          command.CommandType = System.Data.CommandType.StoredProcedure;
          command.CommandText = "PEOPLE_DELETE";
-         command.Parameters.Add("@Id", System.Data.SqlDbType.Bit).Value = id;
+         command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = id;
          status = await command.ExecuteNonQueryAsync() > 0;
          _connection.Close();
          return status;

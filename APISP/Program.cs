@@ -11,9 +11,8 @@ namespace APISP
          var builder = WebApplication.CreateBuilder(args);
          builder.Services.AddControllers();
          builder.Services.AddEndpointsApiExplorer();
-         builder.Services.AddSwaggerGen();
-         
-         builder.Services.AddScoped(_ => new SqlConnection(""));
+         builder.Services.AddSwaggerGen();         
+         builder.Services.AddScoped(_ => new SqlConnection(builder.Configuration.GetConnectionString("DatabaseSP")));
          builder.Services.AddScoped<DALPeople>();
 
          var app = builder.Build();
