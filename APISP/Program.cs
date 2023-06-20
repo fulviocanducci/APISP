@@ -14,6 +14,11 @@ namespace APISP
          builder.Services.AddSwaggerGen();         
          builder.Services.AddScoped(_ => new SqlConnection(builder.Configuration.GetConnectionString("DatabaseSP")));
          builder.Services.AddScoped<DALPeople>();
+         builder.Services.Configure<RouteOptions>(o =>
+         {
+            o.LowercaseUrls = true;
+            o.LowercaseQueryStrings = true;
+         });
 
          var app = builder.Build();
 

@@ -1,9 +1,10 @@
 ﻿using APISP.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Net.Mime;
 namespace APISP.Controllers
 {
    [Route("api/[controller]")]
+   [Produces(MediaTypeNames.Application.Json)]
    [ApiController]
    public class PeopleController : ControllerBase
    {
@@ -15,41 +16,76 @@ namespace APISP.Controllers
       }
 
       [HttpGet]
+      [ProducesResponseType(typeof(IEnumerable<People>), StatusCodes.Status200OK)]
+      [ProducesResponseType(StatusCodes.Status500InternalServerError)]
       public IAsyncEnumerable<People> Get()
       {
-         return _dalPeople.FindAllAsync();
-      }
-
-      [HttpGet("{id}")]
-      public async Task<ActionResult<People>> Get(int id)
-      {
-         People? model = await _dalPeople.FindAsync(id);
-         if (model is null)
-         {
-            return NotFound();
-         }
-         return Ok(model);
-      }
-
-      [HttpPost]
-      public async Task<ActionResult<People>> Post([FromBody] People model)
-      {
-         if (model is null || !ModelState.IsValid)
-         {
-            return BadRequest();
-         }
          try
          {
-            await _dalPeople.AddAsync(model);
-            return CreatedAtAction(nameof(Get), model);
+            return _dalPeople.FindAllAsync();
          }
          catch (Exception)
          {
             throw;
-         }         
+         }
+      }
+
+      [HttpGet("{id}")]
+      [ProducesResponseType(typeof(People), 200)]
+      [ProducesResponseType(StatusCodes.Status404NotFound)]
+      [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+      public async Task<ActionResult<People>> Get(int id)
+      {
+         try
+         {
+            People? model = await _dalPeople.FindAsync(id);
+            if (model is null)
+            {
+               return NotFound();
+            }
+            return Ok(model);
+         }
+         catch (Exception)
+         {
+            throw;
+         }
+         
+      }
+
+      [HttpPost]
+      [ProducesResponseType(typeof(People), StatusCodes.Status201Created)]
+      [ProducesResponseType(StatusCodes.Status400BadRequest)]
+      [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+      public async Task<ActionResult<People>> Post([FromBody] People model)
+      {
+         try
+         {
+            if (model is null || !ModelState.IsValid)
+            {
+               return BadRequest();
+            }
+            try
+            {
+               await _dalPeople.AddAsync(model);
+               return CreatedAtAction(nameof(Get), model);
+            }
+            catch (Exception)
+            {
+               throw;
+            }
+         }
+         catch (Exception)
+         {
+
+            throw;
+         }
+         
       }
 
       [HttpPut("{id}")]
+      [ProducesResponseType(StatusCodes.Status200OK)]
+      [ProducesResponseType(StatusCodes.Status400BadRequest)]
+      [ProducesResponseType(StatusCodes.Status500InternalServerError)]
       public async Task<ActionResult<People>> Put(int id, [FromBody] People model)
       {
          if (model is null || id == 0 || model.Id != id || !ModelState.IsValid)
@@ -66,12 +102,15 @@ namespace APISP.Controllers
          {
             throw;
          }
-         
+
       }
 
       [HttpDelete("{id}")]
+      [ProducesResponseType(StatusCodes.Status200OK)]
+      [ProducesResponseType(StatusCodes.Status400BadRequest)]
+      [ProducesResponseType(StatusCodes.Status500InternalServerError)]
       public async Task<ActionResult> Delete(int id)
-      {
+      {         
          if (id == 0)
          {
             return BadRequest();

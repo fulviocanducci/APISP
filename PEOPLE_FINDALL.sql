@@ -1,0 +1,17 @@
+﻿USE [Sp]
+GO
+
+/****** Object:  StoredProcedure [dbo].[PEOPLE_FINDALL]    Script Date: 20/06/2023 18:21:16 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[PEOPLE_FINDALL]
+AS
+BEGIN	
+	SET NOCOUNT ON;
+    SELECT * FROM Peoples;
+END
+GO

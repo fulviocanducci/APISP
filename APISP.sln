@@ -5,6 +5,15 @@ VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APISP", "APISP\APISP.csproj", "{34FF815D-31FA-4997-BF0B-1579895A98EE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLScripts", "SQLScripts", "{BCA68B53-714B-4818-B68D-7E8DDDAF54EB}"
+	ProjectSection(SolutionItems) = preProject
+		PEOPLE_ADD.sql = PEOPLE_ADD.sql
+		PEOPLE_DELETE.sql = PEOPLE_DELETE.sql
+		PEOPLE_FIND.sql = PEOPLE_FIND.sql
+		PEOPLE_FINDALL.sql = PEOPLE_FINDALL.sql
+		PEOPLE_UPDATE.sql = PEOPLE_UPDATE.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
